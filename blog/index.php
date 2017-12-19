@@ -4,13 +4,12 @@ autoloader::register();
 
 $uri = new URI($_SERVER['REQUEST_URI']);
 
-var_dump($uri);
-
 $router = new Router($uri);
-$router->add('(\w+)/(\d+)', function($category, $id){echo $category .':'. $id;}); //article
-$router->add('(\w+)', function($category){echo $category;}); //catégorie
+$router->add('(\w+)/(\d+)', function(){require 'Controller/articleController.php';}); //article
+$router->add('(\w+)', function(){require 'Controller/categoryController.php';}); //catégorie
+$router->add('^$', function(){require 'Controller/homeController.php';}); //Home
+
 /*
-$router->add('', //fonction anonyme à rajouter ); //Home
 $router->add('admin', // fonction anonyme à rajouter ); //admin menu
 $router->add('admin/(\w+)/', // fonction anonyme à rajouter ); //admin catégorie
 $router->add('admin/(\w+)/(\d+)', // fonction anonyme à rajouter ); //admin article
@@ -19,5 +18,4 @@ $router->add('admin/(\w+)/(\d+)', // fonction anonyme à rajouter ); //admin art
 
 $router->run();
 
-var_dump($router);
 ?>
