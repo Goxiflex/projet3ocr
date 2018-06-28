@@ -14,96 +14,96 @@ class Billet extends Post
   
   /*  Getters */
   
-		  public function getId()
-		  {
+		 public function getId()
+		 {
 			  return $this->_id;
-		  }
+		 }
 		  
-		  public function getTitre()
-		  {
+		 public function getTitre()
+		 {
 			  return $this->_titre;
-		  }
+		 }
 		  
-		  public function getAuteur()
-		  {
+		 public function getAuteur()
+		 {
 			  return $this->_auteur;
-		  }
+		 }
 		  
-		  public function getMetadesc()
-		  {
+		 public function getMetadesc()
+		 {
 			  return $this->_metadesc;
-		  }
+		 }
 		  
-		  public function getMetakey()
-		  {
+		 public function getMetakey()
+		 {
 			  return $this->_metakey;
-		  }
+		 }
 		  
-		  public function getDateCreation()
-		  {
+		 public function getDateCreation()
+		 {
 			  return $this->_dateCreation;
-		  }
+		 }
 		  
-		  public function getContenu()
-		  {
+		 public function getContenu()
+		 {
 			  return $this->_contenu;
-		  }
+		 }
   
  /*  Setters */  
   
-		  public function setId($id)  // A voir si cette fonction a un intérêt, sachant que l'ID est automatique incrémanté par la BDD
-		  {
-			  $id = (int) $id;
+		 public function setId($id)  // A voir si cette fonction a un intérêt, sachant que l'ID est automatique incrémanté par la BDD
+		 {
+			 $id = (int) $id;
 			  
-			  if ($id > 0)
-			  {
+			 if ($id > 0)
+			 {
 				  $this->_id = $id;
-			  }  
-			  else
-			  {
+			 }  
+			 else
+			 {
 				  echo 'l\'id n\'est pas valide';
-			  }
-		  }
+			 }
+		 }
 		  
-		  public function setTitre($titre) 
-		  {		  
-			  if (is_string ($titre))
-			  {
+		 public function setTitre($titre) 
+		 {		  
+			 if (is_string ($titre))
+			 {
 				  $this->_titre = $titre;
-			  }  
-			  else
-			  {
+			 }  
+			 else
+			 {
 				  echo 'le titre n\'est pas valide';
-			  }
-		  }
+			 }
+		 }
 		  
 		  
-		   public function setAuteur($auteur) 
-		  {		  
-			  if (is_string ($auteur))
-			  {
+		 public function setAuteur($auteur) 
+		 {		  
+			 if (is_string ($auteur))
+			 {
 				  $this->_auteur = $auteur;
-			  }  
-			  else
-			  {
+			 }  
+			 else
+			 {
 				  echo 'l\'auteur n\'est pas valide';
-			  }
-		  }
+			 }
+		 }
 		  
-			public function setMetadesc($metadesc) 
-		  {		  
-			  if (is_string ($metadesc))
-			  {
+		public function setMetadesc($metadesc) 
+		 {		  
+			 if (is_string ($metadesc))
+			 {
 				  $this->_metadesc = $metadesc;
-			  }  
-			  else
-			  {
+			 }  
+			 else
+			 {
 				  echo 'la metadesc n\'est pas valide';
-			  }
-		  }
+			 }
+		 }
 		  
-		  	public function setMetakey($metakey) 
-		  {		  
+		 public function setMetakey($metakey) 
+		 {		  
 			  if (is_string ($metakey))
 			  {
 				  $this->_metakey = $metakey;
@@ -112,15 +112,15 @@ class Billet extends Post
 			  {
 				  echo 'la metadesc n\'est pas valide';
 			  }
-		  }
+		 }
 		  
-		  	public function setDateCreation($dateCreation) // A voir si cette fonction a un intérêt étant donné qu'il y a un Current_TimeStamp. Peut-être pour antidater les articles.
-		  {		  
+		 public function setDateCreation($dateCreation) // A voir si cette fonction a un intérêt étant donné qu'il y a un Current_TimeStamp. Peut-être pour antidater les articles.
+		 {		  
 				$this->_dateCreation = $dateCreation;
-		  }
+		 }
 		  
-		  	public function setContenu($contenu) 
-		  {		  
+		 public function setContenu($contenu) 
+		 {		  
 			  if (is_string ($contenu))
 			  {
 				  $this->_contenu = $contenu;
@@ -129,51 +129,48 @@ class Billet extends Post
 			  {
 				  echo 'le contenu n\'est pas valide';
 			  }
-		  }
+		 }
 		  
 		  /*  Hydratation */
 		  
-		  Public function hydrate (array $donnees)
-		  {
-			  if (isset($donnees['id']))
-			  {
+		 public function hydrate (array $donnees)
+		 {
+			 if (isset($donnees['id']))
+			 {
 				  $this->setId($donnees['id']);
-			  }
+			 }
 			  
-			   if (isset($donnees['titre']))
-			  {
+			 if (isset($donnees['titre']))
+			 {
 				  $this->setTitre($donnees['titre']);
-			  }
+			 }
 			  
-			   if (isset($donnees['auteur']))
-			  {
+			 if (isset($donnees['auteur']))
+			 {
 				  $this->setAuteur($donnees['auteur']);
-			  }
+			 }
 			  
-			   if (isset($donnees['metadesc']))
-			  {
+			 if (isset($donnees['metadesc']))
+			 {
 				  $this->setMetadesc($donnees['metadesc']);
-			  }
+			 }
 			  
-			   if (isset($donnees['metakey']))
-			  {
+			 if (isset($donnees['metakey']))
+			 {
 				  $this->setMetakey($donnees['metakey']);
-			  }
+			 }
 			  
-			   if (isset($donnees['dateCreation']))
-			  {
+			 if (isset($donnees['dateCreation']))
+			 {
 				  $this->setDateCreation($donnees['dateCreation']);
-			  }
+			 }
 			  
-			   if (isset($donnees['contenu']))
-			  {
+			 if (isset($donnees['contenu']))
+			 {
 				  $this->setContenu($donnees['contenu']);
-			  }		  
-		  }
-		  
-
-			
+			 }		  
+		 }			
 			/*  Fin de la classe billet */
 }
 
-?>
+

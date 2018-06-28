@@ -1,8 +1,9 @@
 <?php 
 
+require 'Manager.php';
+
 class BilletManager extends Manager
 {
-	private $_bdd;
 	
 	/*  Constructeur */
 	

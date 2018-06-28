@@ -1,9 +1,8 @@
+
+
 <?php
 
-require 'Model/model.php';
+require_once 'Controller/Classes/autoloader.php';
+autoloader::register();
 
-require 'View/Adds/header.php';
-
-require 'View/home.php';
-
-require 'View/Adds/footer.php';
+$home = New Home();
