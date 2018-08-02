@@ -2,39 +2,53 @@
 
 /*  Classe billet */ 		
 
-class Billet extends Post
+class Billet
 {
-  private $_id;
-  private $_titre;
-  private $_auteur;
-  private $_dateCreation;
-  private $_contenu;
+  private $id;
+  private $titre;
+  private $auteur;
+  private $dateCreation;
+  private $dateReform;
+  private $contenu;
   
   /*  Getters */
   
 		 public function getId()
 		 {
-			  return $this->_id;
+			  return $this->id;
 		 }
 		  
 		 public function getTitre()
 		 {
-			  return $this->_titre;
+			  return $this->titre;
 		 }
 		  
 		 public function getAuteur()
 		 {
-			  return $this->_auteur;
+			  return $this->auteur;
 		 }
 		  
 		 public function getDateCreation()
 		 {
-			  return $this->_dateCreation;
+			  return $this->dateCreation;
+		 }
+
+		 public function getDateReform()
+		 {	 	  
+		 	  $this->dateReform = strtotime($this->getDateCreation());
+		 	  $this->dateReform = date('Y-m-d', $this->dateReform);
+		 	  return $this->dateReform;
+		 }
+
+		  public function getDateInt()
+		 {	 	  
+		 	  $dateInt = strtotime($this->getDateCreation());
+		 	  return $dateInt;
 		 }
 		  
 		 public function getContenu()
 		 {
-			  return $this->_contenu;
+			  return $this->contenu;
 		 }
   
  /*  Setters */  
@@ -45,7 +59,7 @@ class Billet extends Post
 			  
 			 if ($id > 0)
 			 {
-				  $this->_id = $id;
+				  $this->id = $id;
 			 }  
 			 else
 			 {
@@ -57,7 +71,7 @@ class Billet extends Post
 		 {		  
 			 if (is_string ($titre))
 			 {
-				  $this->_titre = $titre;
+				  $this->titre = $titre;
 			 }  
 			 else
 			 {
@@ -70,7 +84,7 @@ class Billet extends Post
 		 {		  
 			 if (is_string ($auteur))
 			 {
-				  $this->_auteur = $auteur;
+				  $this->auteur = $auteur;
 			 }  
 			 else
 			 {
@@ -80,14 +94,14 @@ class Billet extends Post
 		  
 		 public function setDateCreation($dateCreation) // A voir si cette fonction a un intérêt étant donné qu'il y a un Current_TimeStamp. Peut-être pour antidater les articles.
 		 {		  
-				$this->_dateCreation = $dateCreation;
+				$this->dateCreation = $dateCreation;
 		 }
 		  
 		 public function setContenu($contenu) 
 		 {		  
 			  if (is_string ($contenu))
 			  {
-				  $this->_contenu = $contenu;
+				  $this->contenu = $contenu;
 			  }  
 			  else
 			  {
@@ -96,8 +110,36 @@ class Billet extends Post
 		 }
 		  
 		  /*  Hydratation */
-		  
-		 public function hydrate (array $donnees)
+
+		 public function hydrate ($donnees)
+		 {
+			 if (isset($donnees->id))
+			 {
+				  $this->setId($donnees->id);
+			 }
+			  
+			 if (isset($donnees->titre))
+			 {
+				  $this->setTitre($donnees->titre);
+			 }
+			  
+			 if (isset($donnees->auteur))
+			 {
+				  $this->setAuteur($donnees->auteur);
+			 }
+			  			  
+			 if (isset($donnees->dateCreation))
+			 {
+				  $this->setDateCreation($donnees->dateCreation);
+			 }
+			  
+			 if (isset($donnees->contenu))
+			 {
+				  $this->setContenu($donnees->contenu);
+			 }		  
+		 }	
+
+		  public function hydrateArray (array $donnees)
 		 {
 			 if (isset($donnees['id']))
 			 {

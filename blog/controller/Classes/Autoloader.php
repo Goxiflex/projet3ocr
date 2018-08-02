@@ -1,6 +1,5 @@
 <?php
 
-
 class autoloader {
     
     static function register(){
@@ -8,12 +7,9 @@ class autoloader {
     }
 
     static function autoload($class){
-
         self::requireFile('model/Classes/' . $class . '.php');
 		self::requireFile('controller/Classes/' . $class . '.php');
 		self::requireFile('view/Classes/' . $class . '.php');
-
-
     }
     
     static function requireFile($filename)

@@ -1,5 +1,6 @@
 <?php 
 
+
 class Home {
 	public function __construct() {
 		require 'view/Adds/head.php';

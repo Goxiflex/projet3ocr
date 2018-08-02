@@ -12,7 +12,6 @@ class Router
         $this->uri = $uri;
     }
 
-
     public function add($pattern, $callback)
     {
         $this->routes[$pattern] = $callback;
@@ -25,9 +24,13 @@ class Router
             if (preg_match('#^' . $pattern . '$#', $this->uri->getCleanedURI(), $params) === 1)
             {
                 array_shift($params);
-                return call_user_func_array($callback, array_values($params));
+                return call_user_func($callback, array_values($params));   
             }
         }
 		require 'View/404.php';
+    }
+
+    public function getArticleController() {
+        require 'Controller/articleController.php';
     }
 }

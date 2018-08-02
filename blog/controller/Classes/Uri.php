@@ -2,7 +2,7 @@
 
 class URI
 {
-    private $explodedURI;
+    private $explodedURI;  // à modifier
     private $scriptPath;
     private $cleanedURI;
     
@@ -10,7 +10,7 @@ class URI
     {
         $this->explodedURI = explode('/', $uri);
         $this->scriptPath = explode('/', $_SERVER['SCRIPT_NAME']);
-        
+    
         $this->cleanRequestURI();
         $this->setCleanedURI();
     }

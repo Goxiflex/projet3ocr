@@ -3,8 +3,6 @@
 require_once 'controller/Classes/autoloader.php';
 autoloader::register();
 
-
-
 $database = new Database ('billet');
 $post = $database->getPost($params['1']);
 if ($post == true){
@@ -12,14 +10,11 @@ if ($post == true){
 	$billet->hydrate($post);
 	
 	$article = New Article();
-	$article->layout($billet);
-
+	$article->layoutAdmin($billet);
 }
 else {
 	require 'View/404.php';
 }
-
-
 
 
 
