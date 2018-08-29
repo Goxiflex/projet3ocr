@@ -24,7 +24,7 @@ Class CommentManager extends Database
 		}
 		catch (Exception $e)
 		{
-			return $e->getMessage();
+			return 'Commentaire non affiché suite à l\'erreur :'. $e->getMessage();
 		}
 	}
 

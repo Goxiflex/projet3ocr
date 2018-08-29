@@ -1,5 +1,5 @@
-<footer>
-<b>Ceci est un footer</b>
+<footer class="container-fluid bg-info fixed-bottom">
+<div class="container text-white">Ceci est un footer</div>
 </footer>
 </body>
 </html>

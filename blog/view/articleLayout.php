@@ -1,26 +1,42 @@
 <?php 
 	require 'Adds/head.php';
 	require 'Adds/header.php';
-?>		<section>
+?>		
+		<section class="container">
 		<h1><?php  echo $billet->getTitre()  ?></h1>
-				<div>Ecrit par <?php  echo $billet->getAuteur()  ?> le <?php  echo $billet->getDateCreation()  ?> </div> 
+				<p class="font-weight-bold">Ecrit par <?php  echo $billet->getAuteur()  ?> le <?php  echo $billet->getDateCreation()  ?> </p> 
 				<p>Contenu : <?php  echo $billet->getContenu()  ?>
 				</p>
 		
 			<h2>Commentaires de cet article : </h2>
-			<div>
+			<div class="col-10">
 					<?php
 						foreach ($comments as $key => $comment) {
 					?>								
 						<div>
 							<h5> <?php echo $comment->getAuteur()?> </h5>
-							<span>Le <?php echo date('d m Y',strtotime($comment->getDateCreation())); ?> </span>
-							<p><?php echo $comment->getContenu(); ?> </p>
+							<p><span class="font-weight-bold">Le <?php echo date('d/m/Y',strtotime($comment->getDateCreation())); ?>
+								<?php
+									$reported = $comment->getReported();
+									if ($reported === true)
+									{
+										echo'<span class="badge badge-warning text-right">Ce commentaire a été reporté, il est cours de modération</span>';
+									}
+								?>
+							</span></p>
+							<p class="ml-3"><?php echo $comment->getContenu(); ?> </p>
 							<p>
 								<form method="POST" action="<?php echo $billet->getId();?>/reportcomment/<?php echo $comment->getId()?>">
 									<input type="hidden" name="id" value="<?php echo $comment->getId(); ?>">
 									<input type="hidden" name="reported" value="1">
-									<button type="submit">Reporter ce commentaire</button>
+
+								<?php
+									if ($reported === false) 
+									{	
+									echo '<button class="btn btn-sm btn-outline-danger" type="submit">Reporter ce commentaire</button>';
+									}
+								?>	
+
 								</form>
 							</p>
 						</div>							

@@ -2,17 +2,29 @@
 	require 'Adds/head.php';
 	require 'Adds/header.php';
 ?>
-<h1>Home du blog</h1>
+<div class="container">
+<h1>Bienvenue sur le blog de Jean Forteroche</h1>
 <div>Vous trouverez ici les derniers articles de ce blog</div>
-<ul>
+
 	
 <?php
-foreach($billetList as $post){
-	echo '<li><a href="'.$post->id.'"> '. $post->titre .' de l\'auteur '. $post->auteur .' créé le '. $post->dateCreation .'</a></li>';
+foreach($billetList as $post)
+{
+?>	
+	<div class="container">
+		<h3 class="row"><?php echo $post->titre ?></h3> 
+		<p class="row font-weight-bold">De l'auteur <?php echo $post->auteur ?> créé le <?php echo $post->dateCreation ?></p>
+		<div class="row">
+			<p class="col-8">
+			<?php echo substr($post->contenu, '0', '200').'<a href="'.PATH.'/'.$post->id.'">[...] lire la suite</a>'; ?>
+			</p>
+		</div>
+	</div>
+<?php
 }
 ?>
 
-</ul>
+</div>
 <?php
 	require 'Adds/footer.php';
 ?>

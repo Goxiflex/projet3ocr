@@ -2,10 +2,12 @@
 	require 'Adds/head.php';
 	require 'Adds/header.php';
 ?>
-		<p><?php echo $message ?></p> 
+<section class="container">
+		<h2><?php echo $message ?></h2> 
 
-		<p><a href="<?= PATH.'/'.$params['0']; ?>"> Revenir à l'article</a></p>
-		<p><a href="<?= PATH; ?>"> Revenir à la page d'accueil</a></p>
+		<a href="<?= PATH.'/'.$params['0']; ?>"><button class="btn btn-secondary"> Revenir à l'article</button></a>
+		<a href="<?= PATH; ?>"><button class="btn btn-warning"> Revenir à la page d'accueil</button></a>
+</section>		
 	<?php
 	require 'Adds/footer.php';
 ?>

@@ -2,20 +2,36 @@
 	require 'Adds/head.php';
 	require 'Adds/header.php';
 ?>
-<h1>Administration des artucles du blog</h1>
+<section class="container">
+<h1>Administration des articles du blog</h1>
 <div>Vous pouvez ici créer, modifier ou supprimer des articles</div>
-<ul>
-	
-<?php
-foreach($billetList as $post){
-	echo '<li>'. $post->titre .' de l\'auteur '. $post->auteur .' créé le '. $post->dateCreation .'</a>
-	<a href="admin/'. $post->id .'/edit"><button>Editer</button></a>
-	<a href="admin/'. $post->id .'/delete"><button>Supprimer</button></a></li>';
-}
-?>
-</ul>
 
-<p><a href="<?= PATH; ?>/admin/create"><button>Créer un article </button></a></p>
+<table class="table">
+<thead>
+		<tr>
+			<th scope="col">Titre</th>
+			<th scope="col">Auteur</th>
+			<th scope="col">Date Création</th>
+			<th scope="col">Actions</th>
+		</tr>	
+</thead>	
+<?php
+foreach($billetList as $post)
+	{ 
+?>
+		<tr>
+			<td><?php echo $post->titre ?></td>
+			<td><?php echo $post->auteur ?></td>
+			<td><?php echo $post->dateCreation ?></td>
+			<td><a href="admin/<?php echo $post->id ?>/edit"><button class="btn btn-info">Editer</button></a> <a href="admin/<?php echo $post->id ?>/delete"><button class="btn btn-secondary">Supprimer</button></a></td>	
+		</tr>
+<?php 
+	}
+?>
+</table>
+
+<p><a href="<?= PATH; ?>/admin/create"><button class="btn btn-success">Créer un article </button></a></p>
+</section>
 <?php
 	require 'Adds/footer.php';
 ?>
