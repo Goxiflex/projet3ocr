@@ -4,15 +4,17 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 $host = $_SERVER['HTTP_HOST'];
 
 
-/* Definition du HOST et du ROOT */
-
+// Paramètres URL
 define('HOST', 'http://'.$host.'/');
 define('ROOT', $root.'/');
 define('PATH', HOST.'php/projet3ocr/blog');
 
-define('CONTROLLER', HOST.'php/projet3ocr/blog/controller/');
-define('MODEL', HOST.'php/projet3ocr/blog/model/');
-define('VIEW', HOST.'php/projet3ocr/blog/view/');
+
+// Paramètres DB
+define('DBNAME', 'blog_projet3' );
+define('DBUSER', 'root');
+define('DBPASS', '');
+define('DBHOST', 'localhost');
 
 
 

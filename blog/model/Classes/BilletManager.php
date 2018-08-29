@@ -1,33 +1,5 @@
-<?php 
-
-class Database {
-
-	protected $db_name;
-	protected $db_user;
-	protected $db_pass;
-	protected $db_host;
-	protected $pdo;
-	
-
-
-	public function __construct() 
-	{
-		$this->db_name = DBNAME;
-		$this->db_user = DBUSER;
-		$this->db_pass = DBPASS;
-		$this->db_host = DBHOST;
-	}	
-
-	protected function getPDO()
-	{
-		if($this->pdo === null) {
-		$pdo = new PDO('mysql:host='.$this->db_host.';dbname='.$this->db_name.';charset=utf8', ''.$this->db_user.'',  ''.$this->db_pass.'', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-		$this->pdo = $pdo;	
-		}
-
-		return $this->pdo;
-	}
-
+<?php
+Class BilletManager extends Database {
 	protected $postId;
 	
 	public function getAll($table)
@@ -100,5 +72,6 @@ class Database {
 		$this->postId = $articleId;
 	}
 
-
+	
 }
+?>

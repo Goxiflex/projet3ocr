@@ -4,30 +4,64 @@ require_once 'controller/Classes/autoloader.php';
 autoloader::register();
 
 $uri = new URI($_SERVER['REQUEST_URI']);
-
-
 $router = new Router($uri);
 
-var_dump($uri);
+$router->add('(\d+)', function($params)
+ 	{	
+		$controller = new Controller($params);
+		$controller->layoutArticle($controller->modelArticleCall('billet'), $controller->modelCommentCall('comment', 'dateCreation'));
+ 	});
 
-$router->add('admin', function(){require 'Controller/adminController.php';});
-$router->add('admin/create', function(){require 'Controller/articleCreationController.php';});
-$router->add('admin/articleCreated.php', function($params){require 'Controller/articleCreatedController.php';}); //Creation
+$router->add('^$', function($params)
+	{
+		$controller = new Controller($params);
+		$controller->layoutHome($controller->modelArticlesListCall('billet'));	
+	});
 
-$router->add('(\w+)/(\d+)', function($params){require 'Controller/articleController.php';}); //article
-$router->add('(\w+)', function(){require 'Controller/categoryController.php';}); //catégorie
-$router->add('^$', function(){require 'Controller/homeController.php';}); //Home
+$router->add('(\d+)/commentpost', function($params){
+		$controller = new Controller($params);
+		$controller->layoutAction($controller->modelCommentInsert('comment'), $params);
+	});
 
-$router->add('(\w+)/(\d+)/edit', function($params){require 'Controller/articleEditController.php';}); //article admin
-$router->add('(\w+)/(\d+)/articleModification.php', function($params){require 'Controller/articleModificationController.php';}); //Modification
-$router->add('(\w+)/(\d+)/delete', function($params){require 'Controller/articleDeleteController.php';});
+$router->add('(\d+)/reportcomment/(\d+)', function($params) {
+		$controller = new Controller($params);
+		$controller->layoutAction($controller->modelCommentReport('comment'), $params);
+	});
 
-/*
-$router->add('admin', // fonction anonyme à rajouter ); //admin menu
-$router->add('admin/(\w+)/', // fonction anonyme à rajouter ); //admin catégorie
-$router->add('admin/(\w+)/(\d+)', // fonction anonyme à rajouter ); //admin article
+$router->add('admin', function($params)
+	{
+		$controller = new Controller($params);
+		$controller->layoutAdmin($controller->modelArticlesListCall('billet'));
+	});
 
-*/
+$router->add('admin/(\d+)/edit', function($params)
+	{
+		$controller = new Controller($params);
+		$controller->layoutAdminEdit($controller->modelArticleCall('billet'));
+	});
+
+$router->add('admin/(\d+)/articleModification.php', function($params)
+	{
+		$controller = new Controller($params);
+		$controller->modelArticleUpdate('billet');
+	});
+
+$router->add('admin/create', function()
+	{
+		Controller::layoutAdminCreate();
+	});
+
+$router->add('admin/articleCreated.php', function($params)
+	{
+		$controller = new Controller($params);
+		$controller->modelArticleInsert('billet');
+	});
+
+$router->add('admin/(\d+)/delete', function($params)
+	{
+		$controller = new Controller($params);
+		$controller->modelArticleDelete('billet');
+	});
+
 $router->run();
-
 ?>

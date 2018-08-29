@@ -26,6 +26,7 @@ class Router
                 array_shift($params);
                 return call_user_func($callback, array_values($params));   
             }
+            
         }
 		require 'View/404.php';
     }

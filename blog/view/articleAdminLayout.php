@@ -1,6 +1,8 @@
-<html>
+<?php 
+	require 'Adds/head.php';
+	require 'Adds/header.php';
+?>
 
-<body>
 <h2>Edition d'article</h2>
 <p>Edition de l'article <?php  echo $billet->getTitre() .' de '. $billet->getAuteur() .', portant le numéro '. $billet->getId();  ?> </p>
 <form action="articleModification.php" method="post">
@@ -24,12 +26,10 @@
 	<p>
 		<button type="submit">Modifier l'article</button>
 	</p>
-
+</form>
 	
 <p><a href="<?= PATH; ?>/admin">Retour à la liste des articles</a></p>
 
-
-
-</form>
-</body>
-</html>
+<?php
+	require 'Adds/footer.php';
+?>

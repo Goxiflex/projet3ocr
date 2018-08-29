@@ -1,6 +1,8 @@
-<html>
+<?php 
+	require 'Adds/head.php';
+	require 'Adds/header.php';
+?>
 
-<body>
 <h2>Création de l'article</h2>
 <form action="articleCreated.php" method="post">
 	<p>
@@ -21,9 +23,7 @@
 
 	
 <p><a href="<?= PATH; ?>/admin">Retour à la liste des articles</a></p>
-
-
-
 </form>
-</body>
-</html>
+<?php
+	require 'Adds/footer.php';
+?>
