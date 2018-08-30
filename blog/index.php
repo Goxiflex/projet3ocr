@@ -61,7 +61,7 @@ $router->add('admin/(\d+)/deletecomment/(\d+)', function($params){
 
 $router->add('admin/(\d+)/modifycomment/(\d+)', function($params){
 		$controller = new Controller($params);
-		$contoller->layoutAdminComment()
+		$contoller->layoutAdminComment();
 	});
 
 
