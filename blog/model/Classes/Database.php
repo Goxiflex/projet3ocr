@@ -54,19 +54,21 @@ class Database {
 		}
 		catch (Exception $e)
 		{
-			return $e->getMessage();
+			return 'Article non affiché suite à l\'erreur :'. $e->getMessage();
 		}
 	}
 
 	public function updatePost($table, $postId, $postAuteur, $postTitre, $postContenu, $postDateCreation) 
 	{		
-		if ($this->getPDO()->query('UPDATE '. $table .' SET auteur="'. $postAuteur .'", titre="'. $postTitre .'", contenu="'. $postContenu .'", dateCreation="'. $postDateCreation .'" WHERE id='. $postId .' '))
+		try 
 		{
-			echo 'Article modifié avec succés'; 
+			$this->getPDO()->query('UPDATE '. $table .' SET auteur="'. $postAuteur .'", titre="'. $postTitre .'", contenu="'. $postContenu .'", dateCreation="'. $postDateCreation .'" WHERE id='. $postId .' ');
+
+			return 'Article modifié avec succés'; 
 		}
-		else 
+		catch (Exception $e) 
 		{
-			echo 'Article non modifié'; 
+			return 'Article non modifié suite à l\'erreur :'.$e->getMessage(); 
 		}
 	}
 
@@ -75,23 +77,24 @@ class Database {
 		try 
 		{
 			$this->getPDO()->query('INSERT INTO '. $table .' SET auteur="'. $postAuteur .'", titre="'. $postTitre .'", contenu="'. $postContenu .'" ');
-			echo 'Article créé avec succés'; 
+			return 'Article créé avec succés'; 
 		}
 		catch (Exception $e)
 		{
-			echo 'Article non créé suite à l\'erreur :'.$e->getMessage();  //Certainement à remplacer par un appel de Layout voire un retour au controller / router
+			return 'Article non créé suite à l\'erreur :'.$e->getMessage();  //Certainement à remplacer par un appel de Layout voire un retour au controller / router
 		}
 	}
 
 	public function deletePost($table, $postId)
 	{
-		if ($this->getPDO()->query('DELETE FROM '. $table .' WHERE id='. $postId .' '))
+		try 
 		{
-			echo 'Article supprimé avec succés'; //Certainement à remplacer par un appel de Layout voire un retour au controller / router
+			$this->getPDO()->query('DELETE FROM '. $table .' WHERE id='. $postId .' ');
+			return 'Supprimé avec succés';
 		}
-		else 
+		catch (Exception $e)
 		{
-			echo 'Erreur, article non supprimé';  //Certainement à remplacer par un appel de Layout voire un retour au controller / router
+			return 'Erreur, non supprimé suite à l\'erreur: '.$e->getMessage(); 
 		}
 	}	
 

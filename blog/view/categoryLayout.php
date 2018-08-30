@@ -18,8 +18,11 @@ foreach($billetList as $post)
 			<p class="col-8">
 			<?php echo substr($post->contenu, '0', '200').'<a href="'.PATH.'/'.$post->id.'">[...] lire la suite</a>'; ?>
 			</p>
+
 		</div>
+		<hr/>
 	</div>
+
 <?php
 }
 ?>

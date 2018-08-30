@@ -14,6 +14,20 @@ Class CommentManager extends Database
 		}
 	}
 
+	public function getComment($table, $id) 
+	{
+		try
+		{
+			$req = $this->getPDO()->query('SELECT * FROM '. $table .' WHERE id = '. $id);
+			$datasComment = $req->fetch(PDO::FETCH_OBJ);
+			return $datasComment;
+		}
+		catch (Exception $e)
+		{
+			return 'Commentaire non affiché suite à l\'erreur :'. $e->getMessage();
+		}
+	}
+
 	public function getComments($table, $billetId, $order) 
 	{
 		try
@@ -28,12 +42,20 @@ Class CommentManager extends Database
 		}
 	}
 
-	public function getAllComments($table, $billetId) 
+	public function reportComment($table, $reported, $id)
 	{
-		/* Fonction pour afficher tous les commentaires */
+		try
+		{
+			$this->getPDO()->query('UPDATE '. $table .' SET reported='. $reported .'  WHERE id = '. $id .' ');
+			return 'article reporté avec succés';
+		}
+		catch (Exception $e)
+		{
+			return 'article non reporté suite à l\'erreur :'. $e->getMessage();
+		}
 	}
 
-	public function reportComment($table, $reported, $id)
+	public function deleteComment($table, $reported, $id)
 	{
 		try
 		{

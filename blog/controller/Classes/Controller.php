@@ -40,39 +40,32 @@ class Controller {
 		$billet = new Billet;
 		$billet->hydrateArray($_POST);
 		$database = new Database();
-		if ($database->getPost($table, $this->parameters[0]) == true)
-		{
-			$database->updatePost($table, $billet->getId(), $billet->getAuteur(), $billet->getTitre(), $billet->getContenu(), $billet->getDateCreation());
-		}
-		else {
-			echo 'erreur';
-		}
+		return $database->updatePost($table, $billet->getId(), $billet->getAuteur(), $billet->getTitre(), $billet->getContenu(), $billet->getDateCreation());
 	}
 
 	public function modelArticleDelete($table){
-		$database = new Database();
-		$post = $database->getPost($table, $this->parameters[0]);
-		if ($post == true)
+		$database = new Database();	
+		try
 		{
-					if (!isset($_POST['confirm']))
+			$database->getPost($table, $this->parameters[0]);
+				if (!isset($_POST['confirm']))
 					{
-							require 'View/articleDeleteAdminLayout.php';
+						return file_get_contents('view\articleDeleteAdminLayout.php');
 					}
-					elseif ($_POST['confirm'] === 'Oui') 
+				elseif ($_POST['confirm'] === 'Oui') 
 					{
-						$database->deletePost($table, $post->id);
+						return $database->deletePost($table, $post->id);
 					}
-					elseif ($_POST['confirm'] === 'Non')
+				elseif ($_POST['confirm'] === 'Non')
 					{
-						echo '<p>il n\'est pas supprimé</p>
-								<p><a href="'.PATH.'/admin">Revenir dans la liste des articles</a></p>';
+						return 'Article non supprimé';
 					}
-					else 
+				else 
 					{
-						echo 'Erreur';
+						return 'Erreur';
 					}
 		}
-		else 
+		catch (Exception $e) 
 		{
 					require 'View/404.php';
 		}
@@ -103,7 +96,34 @@ class Controller {
 		$comment->hydrateArrayComment($_POST);
 		$commentmanager = new CommentManager();
 		return $commentmanager->reportComment($table, $comment->getReported(), $comment->getId());
+	}
 
+	public function modelCommentDelete($table){
+		$commentmanager = new CommentManager();	
+		try
+		{
+			$commentmanager->getComment($table, $this->parameters[1]);
+				if (!isset($_POST['confirm']))
+					{
+						return file_get_contents('view\commentDeleteAdminLayout.php');
+					}
+				elseif ($_POST['confirm'] === 'Oui') 
+					{
+						return $commentmanager->deletePost($table, $this->parameters[1]);
+					}
+				elseif ($_POST['confirm'] === 'Non')
+					{
+						return 'Commentaire non supprimé';
+					}
+				else 
+					{
+						return 'Erreur';
+					}
+		}
+		catch (Exception $e) 
+		{
+				return 'Une erreur est survenu : '. $e->getMessage() ;
+		}
 	}
 
 	public function layoutArticle($billet, $comments) {
@@ -126,15 +146,19 @@ class Controller {
 		require 'View/articleCreateAdminLayout.php';
 	}
 
-	public function layoutAdminCreated() {
-		/* A travailler */
-	}
-
 	public static function layoutDeleteAdmin() {
 		require 'View/articleDeleteAdminLayout.php';
 	}
 
-	public function layoutAction($message, $params){
+	public function layoutAdminComments($billet, $comments, $params){
+		require 'view/commentsListAdminLayout.php';
+	}
+
+	public function layoutAdminComment($comments) {
+		require 'view/commentAdminLayout.php';
+	}
+
+	public function layoutAction($message, $params, $context){
 		require 'View/actionLayout.php';
 	}	
 }

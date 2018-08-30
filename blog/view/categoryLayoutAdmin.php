@@ -23,7 +23,11 @@ foreach($billetList as $post)
 			<td><?php echo $post->titre ?></td>
 			<td><?php echo $post->auteur ?></td>
 			<td><?php echo $post->dateCreation ?></td>
-			<td><a href="admin/<?php echo $post->id ?>/edit"><button class="btn btn-info">Editer</button></a> <a href="admin/<?php echo $post->id ?>/delete"><button class="btn btn-secondary">Supprimer</button></a></td>	
+			<td>
+				<a href="admin/<?php echo $post->id ?>/edit"><button class="btn btn-info">Editer</button></a>
+				<a href="admin/<?php echo $post->id ?>/delete"><button class="btn btn-secondary">Supprimer</button></a>
+				<a href="admin/<?php echo $post->id ?>/comments"><button class="btn btn-warning">Modérer les commentaires</button></a>
+			</td>	
 		</tr>
 <?php 
 	}

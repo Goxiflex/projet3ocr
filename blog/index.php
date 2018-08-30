@@ -18,14 +18,16 @@ $router->add('^$', function($params)
 		$controller->layoutHome($controller->modelArticlesListCall('billet'));	
 	});
 
-$router->add('(\d+)/commentpost', function($params){
+$router->add('(\d+)/commentpost', function($params)
+	{
 		$controller = new Controller($params);
-		$controller->layoutAction($controller->modelCommentInsert('comment'), $params);
+		$controller->layoutAction($controller->modelCommentInsert('comment'), $params, 'front');
 	});
 
-$router->add('(\d+)/reportcomment/(\d+)', function($params) {
+$router->add('(\d+)/reportcomment/(\d+)', function($params) 
+	{
 		$controller = new Controller($params);
-		$controller->layoutAction($controller->modelCommentReport('comment'), $params);
+		$controller->layoutAction($controller->modelCommentReport('comment'), $params, 'front');
 	});
 
 $router->add('admin', function($params)
@@ -43,8 +45,25 @@ $router->add('admin/(\d+)/edit', function($params)
 $router->add('admin/(\d+)/articleModification.php', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->modelArticleUpdate('billet');
+		$controller->layoutAction($controller->modelArticleUpdate('billet'), $params, 'admin');
 	});
+
+$router->add('admin/(\d+)/comments', function($params)
+	{
+		$controller = new Controller($params);
+		$controller->layoutAdminComments($controller->modelArticleCall('billet'),$controller->modelCommentCall('comment', 'dateCreation'), $params);
+	});
+
+$router->add('admin/(\d+)/deletecomment/(\d+)', function($params){
+		$controller = new Controller($params);
+		$controller->layoutAction($controller->modelCommentDelete('comment'), $params, 'admin');
+	});
+
+$router->add('admin/(\d+)/modifycomment/(\d+)', function($params){
+		$controller = new Controller($params);
+		$contoller->layoutAdminComment()
+	});
+
 
 $router->add('admin/create', function()
 	{
@@ -54,13 +73,13 @@ $router->add('admin/create', function()
 $router->add('admin/articleCreated.php', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->modelArticleInsert('billet');
+		$controller->layoutAction($controller->modelArticleInsert('billet'), $params, 'admin');
 	});
 
 $router->add('admin/(\d+)/delete', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->modelArticleDelete('billet');
+		$controller->layoutAction($controller->modelArticleDelete('billet'), $params, 'admin');
 	});
 
 $router->run();
