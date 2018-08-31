@@ -55,16 +55,16 @@ Class CommentManager extends Database
 		}
 	}
 
-	public function deleteComment($table, $reported, $id)
+	public function updateComment($table, $auteur, $contenu, $reported, $dateCreation, $id)
 	{
 		try
 		{
-			$this->getPDO()->query('UPDATE '. $table .' SET reported='. $reported .'  WHERE id = '. $id .' ');
-			return 'article reporté avec succés';
+			$this->getPDO()->query('UPDATE '. $table .' SET auteur="'. $auteur .'", contenu="'. $contenu .'", reported="'. $reported .'", dateCreation="'.  $dateCreation .'" WHERE id="'. $id .'"');
+			return 'article modifié avec succés';
 		}
 		catch (Exception $e)
 		{
-			return 'article non reporté suite à l\'erreur :'. $e->getMessage();
+			return 'article non modifié suite à l\'erreur :'. $e->getMessage();
 		}
 	}
 }

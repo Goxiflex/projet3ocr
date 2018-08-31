@@ -11,7 +11,7 @@ Class Comment extends Post
 
 	public function getReported()
 		 {
-			  return $this->reported;
+			  return (bool) $this->reported;
 		 }	
 		  
 	public function setBilletId($billetId)  // A voir si cette fonction a un intérêt, sachant que l'ID est automatique incrémanté par la BDD
@@ -83,9 +83,9 @@ Class Comment extends Post
 				  $this->setAuteur($donnees['auteur']);
 			 }
 			  			  
-			 if (isset($donnees['date']))
+			 if (isset($donnees['dateCreation']))
 			 {
-				  $this->setDateCreation($donnees['date']);
+				  $this->setDateCreation($donnees['dateCreation']);
 			 }
 			  
 			 if (isset($donnees['contenu']))

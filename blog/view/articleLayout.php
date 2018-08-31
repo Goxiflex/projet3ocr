@@ -3,9 +3,9 @@
 	require 'Adds/header.php';
 ?>		
 		<section class="container">
-		<h1><?php  echo $billet->getTitre()  ?></h1>
-				<p class="font-weight-bold">Ecrit par <?php  echo $billet->getAuteur()  ?> le <?php  echo $billet->getDateCreation()  ?> </p> 
-				<p>Contenu : <?php  echo $billet->getContenu()  ?>
+		<h1><?php  echo $article->getTitre()  ?></h1>
+				<p class="font-weight-bold">Ecrit par <?php  echo $article->getAuteur()  ?> le <?php  echo date('d/m/Y', $article->getDateCreation())  ?> </p> 
+				<p>Contenu : <?php  echo $article->getContenu()  ?>
 				</p>
 		
 			<h2>Commentaires de cet article : </h2>
@@ -15,7 +15,7 @@
 					?>								
 						<div>
 							<h5> <?php echo $comment->getAuteur()?> </h5>
-							<p><span class="font-weight-bold">Le <?php echo date('d/m/Y',strtotime($comment->getDateCreation())); ?>
+							<p><span class="font-weight-bold">Le <?php echo date('d/m/Y',$comment->getDateCreation()); ?>
 								<?php
 									$reported = $comment->getReported();
 									if ($reported === true)
@@ -26,7 +26,7 @@
 							</span></p>
 							<p class="ml-3"><?php echo $comment->getContenu(); ?> </p>
 							<p>
-								<form method="POST" action="<?php echo $billet->getId();?>/reportcomment/<?php echo $comment->getId()?>">
+								<form method="POST" action="<?php echo $article->getId();?>/reportcomment/<?php echo $comment->getId()?>">
 									<input type="hidden" name="id" value="<?php echo $comment->getId(); ?>">
 									<input type="hidden" name="reported" value="1">
 
@@ -45,9 +45,9 @@
 					?>	
 			</div>
 				<h3>Poster un commentaire :</h3>
-					<form method="POST" action="<?php echo $billet->getId(); ?>/commentpost">
+					<form method="POST" action="<?php echo $article->getId(); ?>/commentpost">
 						<p>
-							<input type="hidden" name="billetid" value="<?php echo $billet->getId();?>">
+							<input type="hidden" name="billetid" value="<?php echo $article->getId();?>">
 							<label for="Auteur">Votre nom :</label><br/>
 							<input type="text" name="auteur">
 						</p>

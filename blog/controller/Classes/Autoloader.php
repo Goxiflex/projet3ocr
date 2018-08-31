@@ -10,6 +10,9 @@ class autoloader {
         self::requireFile('model/Classes/' . $class . '.php');
 		self::requireFile('controller/Classes/' . $class . '.php');
 		self::requireFile('view/Classes/' . $class . '.php');
+        self::requireFile('model/' . $class . '.php');
+        self::requireFile('controller/' . $class . '.php');
+        self::requireFile('view/' . $class . '.php');
     }
     
     static function requireFile($filename)

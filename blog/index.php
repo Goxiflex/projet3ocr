@@ -61,9 +61,14 @@ $router->add('admin/(\d+)/deletecomment/(\d+)', function($params){
 
 $router->add('admin/(\d+)/modifycomment/(\d+)', function($params){
 		$controller = new Controller($params);
-		$contoller->layoutAdminComment();
+		$controller->layoutAdminComment($controller->modelCommentsingleCall('comment'), $params);
 	});
 
+$router->add('admin/(\d+)/modifycomment/commentModification.php', function($params)
+	{
+		$controller = new Controller($params);
+		$controller->layoutAction($controller->modelCommentUpdate('comment'), $params, 'admin');
+	});
 
 $router->add('admin/create', function()
 	{

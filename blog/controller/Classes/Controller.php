@@ -17,44 +17,44 @@ class Controller {
 	}
 
 	public function modelArticleCall($table) {
-		$database = new Database();
-		$billet = new Billet();
-		$billet->hydrate($database->getPost($table, $this->parameters[0]));
-		return $billet;
+		$articlemanager = new ArticleManager();
+		$article = new Article();
+		$article->hydrate($articlemanager->getPost($table, $this->parameters[0]));
+		return $article;
 	}
 
 	public function modelArticlesListCall($table) {
-		$database = new Database ();
-		$billetList = $database->getAll($table);
-		return $billetList;
+		$articlemanager = new ArticleManager();
+		$articlesList = $articlemanager->getAll($table);
+		return $articlesList;
 	}
 
 	public function modelArticleInsert($table){
-		$billet = new Billet;
-		$billet->hydrateArray($_POST);
-		$database = new Database();
-		$database->insertPost($table, $billet->getAuteur(), $billet->getTitre(), $billet->getContenu());
+		$article = new Article();
+		$article->hydrateArray($_POST);
+		$articlemanager = new ArticleManager();
+		return $articlemanager->insertPost($table, $article->getAuteur(), $article->getTitre(), $article->getContenu());
 	}
 
 	public function modelArticleUpdate($table){	
-		$billet = new Billet;
-		$billet->hydrateArray($_POST);
-		$database = new Database();
-		return $database->updatePost($table, $billet->getId(), $billet->getAuteur(), $billet->getTitre(), $billet->getContenu(), $billet->getDateCreation());
+		$article = new Article();
+		$article->hydrateArray($_POST);
+		$articlemanager = new ArticleManager();
+		return $articlemanager->updatePost($table, $article->getId(), $article->getAuteur(), $article->getTitre(), $article->getContenu(), date('Y-m-d H:i:s',$article->getDateCreation()));
 	}
 
 	public function modelArticleDelete($table){
-		$database = new Database();	
+		$articlemanager = new ArticleManager();
 		try
 		{
-			$database->getPost($table, $this->parameters[0]);
+			$articlemanager->getPost($table, $this->parameters[0]);
 				if (!isset($_POST['confirm']))
 					{
-						return file_get_contents('view\articleDeleteAdminLayout.php');
+						return file_get_contents('view\articleDeleteLayout.php');
 					}
 				elseif ($_POST['confirm'] === 'Oui') 
 					{
-						return $database->deletePost($table, $post->id);
+						return $articlemanager->deletePost($table, $post->id);
 					}
 				elseif ($_POST['confirm'] === 'Non')
 					{
@@ -69,6 +69,13 @@ class Controller {
 		{
 					require 'View/404.php';
 		}
+	}
+
+	public function modelCommentsingleCall($table) {
+		$comment = new Comment();
+		$commentmanager = new CommentManager();
+		$comment->hydrateComment($commentmanager->getComment($table, $this->parameters[1]));
+		return $comment;
 	}
 
 	public function modelCommentInsert($table) {
@@ -98,6 +105,15 @@ class Controller {
 		return $commentmanager->reportComment($table, $comment->getReported(), $comment->getId());
 	}
 
+	public function modelCommentUpdate($table) {
+
+		$comment = new Comment;
+		$comment->hydrateArrayComment($_POST);
+		$commentmanager = new CommentManager();
+		return $commentmanager->updateComment($table, $comment->getAuteur(), $comment->getContenu(), (int)$comment->getReported(), date('Y-m-d H:i:s' ,$comment->getDateCreation()), $comment->getId());
+
+	}
+
 	public function modelCommentDelete($table){
 		$commentmanager = new CommentManager();	
 		try
@@ -105,7 +121,7 @@ class Controller {
 			$commentmanager->getComment($table, $this->parameters[1]);
 				if (!isset($_POST['confirm']))
 					{
-						return file_get_contents('view\commentDeleteAdminLayout.php');
+						return file_get_contents('view\commentDeleteLayout.php');
 					}
 				elseif ($_POST['confirm'] === 'Oui') 
 					{
@@ -126,35 +142,35 @@ class Controller {
 		}
 	}
 
-	public function layoutArticle($billet, $comments) {
-		require 'View/articleLayout.php';
+	public function layoutArticle($article, $comments) {
+		require 'view/articleLayout.php';
 	}
 
-	public function layoutHome($billetList) {
-		require 'View/categoryLayout.php';
+	public function layoutHome($articlesList) {
+		require 'view/homeLayout.php';
 	}
 
-	public function layoutAdmin($billetList){
-		require 'View/categoryLayoutAdmin.php';
+	public function layoutAdmin($articlesList){
+		require 'view/adminLayout.php';
 	}
 
-	public function layoutAdminEdit($billet){
-		require 'View/articleAdminLayout.php';
+	public function layoutAdminEdit($article){
+		require 'view/articleEditLayout.php';
 	}
 
 	public static function layoutAdminCreate(){
-		require 'View/articleCreateAdminLayout.php';
+		require 'view/articleCreateLayout.php';
 	}
 
 	public static function layoutDeleteAdmin() {
-		require 'View/articleDeleteAdminLayout.php';
+		require 'view/articleDeleteLayout.php';
 	}
 
-	public function layoutAdminComments($billet, $comments, $params){
-		require 'view/commentsListAdminLayout.php';
+	public function layoutAdminComments($article, $comments, $params){
+		require 'view/commentsListLayout.php';
 	}
 
-	public function layoutAdminComment($comments) {
+	public function layoutAdminComment($comment, $params) {
 		require 'view/commentAdminLayout.php';
 	}
 
