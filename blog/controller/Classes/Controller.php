@@ -16,11 +16,16 @@ class Controller {
 		return $this->parameters;
 	}
 
-	public function modelArticleCall($table) {
+	/* public function modelArticleCall($table) {
 		$articlemanager = new ArticleManager();
 		$article = new Article();
 		$article->hydrate($articlemanager->getPost($table, $this->parameters[0]));
 		return $article;
+	} */
+
+	public function modelArticleCall($table) {
+		$model = new Model($table, $this->parameters[0], '');
+		return $model->ArticleCall();		
 	}
 
 	public function modelArticlesListCall($table) {
@@ -143,38 +148,38 @@ class Controller {
 	}
 
 	public function layoutArticle($article, $comments) {
-		require 'view/articleLayout.php';
+		require 'view/template/articleLayout.php';
 	}
 
 	public function layoutHome($articlesList) {
-		require 'view/homeLayout.php';
+		require 'view/template/homeLayout.php';
 	}
 
 	public function layoutAdmin($articlesList){
-		require 'view/adminLayout.php';
+		require 'view/template/adminLayout.php';
 	}
 
 	public function layoutAdminEdit($article){
-		require 'view/articleEditLayout.php';
+		require 'view/template/articleEditLayout.php';
 	}
 
 	public static function layoutAdminCreate(){
-		require 'view/articleCreateLayout.php';
+		require 'view/template/articleCreateLayout.php';
 	}
 
 	public static function layoutDeleteAdmin() {
-		require 'view/articleDeleteLayout.php';
+		require 'view/template/articleDeleteLayout.php';
 	}
 
 	public function layoutAdminComments($article, $comments, $params){
-		require 'view/commentsListLayout.php';
+		require 'view/template/commentsListLayout.php';
 	}
 
 	public function layoutAdminComment($comment, $params) {
-		require 'view/commentAdminLayout.php';
+		require 'view/template/commentAdminLayout.php';
 	}
 
 	public function layoutAction($message, $params, $context){
-		require 'View/actionLayout.php';
+		require 'view/template/actionLayout.php';
 	}	
 }
