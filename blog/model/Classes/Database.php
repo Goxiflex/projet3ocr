@@ -58,6 +58,18 @@ class Database {
 		}
 	}
 
+		public function deletePost($table, $postId)
+	{
+		try 
+		{
+			$this->getPDO()->query('DELETE FROM '. $table .' WHERE id='. $postId .' ');
+			return 'Supprimé avec succés';
+		}
+		catch (Exception $e)
+		{
+			return 'Erreur, non supprimé suite à l\'erreur: '.$e->getMessage(); 
+		}
+	}	
 	
 
 

@@ -16,7 +16,7 @@
 		</p>	
 		<p class="form-group col-10">	
 			<label for="Contenu">Contenu</label><br/>
-			<textarea type="text" class="form-control" name="contenu"><?php echo $article->getContenu();?></textarea>
+			<textarea type="text" class="form-control" id="article-content" name="contenu"><?php echo $article->getContenu();?></textarea>
 		</p>
 		<p class="form-group col-4">
 			<label for="Date">Date de Création</label><br/>		

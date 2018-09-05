@@ -8,15 +8,15 @@
 
 	
 <?php
-foreach($articlesList as $article)
+foreach($articles as $article)
 {
 ?>	
 	<div class="container">
-		<h3 class="row"><?php echo $article->titre ?></h3> 
-		<p class="row font-weight-bold">De l'auteur <?php echo $article->auteur ?> créé le <?php echo $article->dateCreation ?></p>
+		<h3 class="row"><?php echo $article->getTitre() ?></h3> 
+		<p class="row font-weight-bold">De l'auteur <?php echo $article->getAuteur() ?> créé le <?php echo $article->getDateCreation() ?></p>
 		<div class="row">
 			<p class="col-8">
-			<?php echo substr($article->contenu, '0', '200').'<a href="'.PATH.'/'.$article->id.'">[...] lire la suite</a>'; ?>
+			<?php echo substr(strip_tags($article->getContenu()), '0', '200').'<a href="'.PATH.'/'.$article->getId().'">[...] lire la suite</a>'; ?>
 			</p>
 
 		</div>
@@ -29,5 +29,5 @@ foreach($articlesList as $article)
 
 </div>
 <?php
-	require '../Adds/footer.php';
+	require 'Adds/footer.php';
 ?>

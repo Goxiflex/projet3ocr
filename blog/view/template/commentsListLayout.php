@@ -20,8 +20,8 @@
 					</div>
 					
 					<div class="col-3 pt-2 text-right">	
-						<a href="<?php echo PATH.'/admin/'. $params['0'] .'/deletecomment/'.$comment->getId();  ?>"><button class="btn btn-danger">Supprimer</button></a>
-						<a href="<?php echo PATH.'/admin/'. $params['0'] .'/modifycomment/'.$comment->getId();  ?>"><button class="btn btn-warning">Modifier</button></a>
+						<a href="<?php echo PATH.'/admin/'. $article->getId() .'/deletecomment/'.$comment->getId();  ?>"><button class="btn btn-danger">Supprimer</button></a>
+						<a href="<?php echo PATH.'/admin/'. $article->getId() .'/modifycomment/'.$comment->getId();  ?>"><button class="btn btn-warning">Modifier</button></a>
 					</div>
 					
 				</div>	
@@ -45,8 +45,8 @@
 					</div>
 					
 					<div class="col-3 pt-2 text-right">	
-						<a href="<?php echo PATH.'/admin/'. $params['0'] .'/deletecomment/'.$comment->getId();  ?>"><button class="btn btn-danger">Supprimer</button></a>
-						<a href="<?php echo PATH.'/admin/'. $params['0'] .'/modifycomment/'.$comment->getId();  ?>"><button class="btn btn-warning">Modifier</button></a>
+						<a href="<?php echo PATH.'/admin/'. $article->getId() .'/deletecomment/'.$comment->getId();  ?>"><button class="btn btn-danger">Supprimer</button></a>
+						<a href="<?php echo PATH.'/admin/'. $article->getId() .'/modifycomment/'.$comment->getId();  ?>"><button class="btn btn-warning">Modifier</button></a>
 					</div>
 					
 				</div>	

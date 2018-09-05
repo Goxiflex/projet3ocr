@@ -21,7 +21,7 @@
 			<input type="date" name="dateCreation" class="form-control" value="<?php echo date('Y-m-d', $comment->getDateCreation());?>" >
 		</p>
 			<input type="hidden" name="reported" value="0">
-			<input type="hidden" name="id" value="<?php echo $params[1] ?>">
+			<input type="hidden" name="id" value="<?php echo $params ?>">
 		<p class="form-group col-12">
 			<p><span class="badge badge-info">En modifiant ce commentaire, celui-ci sera considéré comme modéré.</span></p>
 			<button class="btn btn-success" type="submit">Modifier le commentaire</button>

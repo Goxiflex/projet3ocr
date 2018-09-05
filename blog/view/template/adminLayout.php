@@ -16,17 +16,17 @@
 			</tr>	
 	</thead>	
 <?php
-foreach($articlesList as $article)
+foreach($articles as $article)
 	{ 
 ?>
 		<tr>
-			<td><?php echo $article->titre ?></td>
-			<td><?php echo $article->auteur ?></td>
-			<td><?php echo date('d/m/Y à H:i', strtotime($article->dateCreation)) ?></td>
+			<td><?php echo $article->getTitre() ?></td>
+			<td><?php echo $article->getAuteur() ?></td>
+			<td><?php echo date('d/m/Y à H:i', $article->getDateCreation()) ?></td>
 			<td class="text-center">
-				<a href="admin/<?php echo $article->id ?>/edit"><button class="btn btn-info">Editer</button></a>
-				<a href="admin/<?php echo $article->id ?>/delete"><button class="btn btn-secondary">Supprimer</button></a>
-				<a href="admin/<?php echo $article->id ?>/comments"><button class="btn btn-warning">Modérer les commentaires</button></a>
+				<a href="admin/<?php echo $article->getId() ?>/edit"><button class="btn btn-info">Editer</button></a>
+				<a href="admin/<?php echo $article->getId() ?>/delete"><button class="btn btn-secondary">Supprimer</button></a>
+				<a href="admin/<?php echo $article->getId() ?>/comments"><button class="btn btn-warning">Modérer les commentaires</button></a>
 			</td>	
 		</tr>
 <?php 

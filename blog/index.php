@@ -6,85 +6,85 @@ autoloader::register();
 $uri = new URI($_SERVER['REQUEST_URI']);
 $router = new Router($uri);
 
-$router->add('(\d+)', function($params)
- 	{	
-		$controller = new Controller($params);
-		$controller->layoutArticle($controller->modelArticleCall('billet'), $controller->modelCommentCall('comment', 'dateCreation'));
- 	});
-
 $router->add('^$', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->layoutHome($controller->modelArticlesListCall('billet'));	
-	});
+		$controller->displayArticlesList('billet');	
+	});	
+
+$router->add('(\d+)', function($params)
+ 	{	
+		$controller = new Controller($params);
+		$controller->displayArticle('billet','comment');
+ 	});
 
 $router->add('(\d+)/commentpost', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->layoutAction($controller->modelCommentInsert('comment'), $params, 'front');
+		$controller->displayCommentInsert('comment');
 	});
 
 $router->add('(\d+)/reportcomment/(\d+)', function($params) 
 	{
 		$controller = new Controller($params);
-		$controller->layoutAction($controller->modelCommentReport('comment'), $params, 'front');
+		$controller->displayCommentReport('comment');
 	});
-
+	
 $router->add('admin', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->layoutAdmin($controller->modelArticlesListCall('billet'));
+		$controller->displayAdmin('billet');
 	});
 
 $router->add('admin/(\d+)/edit', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->layoutAdminEdit($controller->modelArticleCall('billet'));
+		$controller->displayArticleEdit('billet');
 	});
 
 $router->add('admin/(\d+)/articleModification.php', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->layoutAction($controller->modelArticleUpdate('billet'), $params, 'admin');
+		$controller->displayArticleEdited('billet');
 	});
 
 $router->add('admin/(\d+)/comments', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->layoutAdminComments($controller->modelArticleCall('billet'),$controller->modelCommentCall('comment', 'dateCreation'), $params);
+		$controller->displayCommentsList('billet', 'comment');
 	});
 
 $router->add('admin/(\d+)/deletecomment/(\d+)', function($params){
 		$controller = new Controller($params);
-		$controller->layoutAction($controller->modelCommentDelete('comment'), $params, 'admin');
-	});
+		$controller->displayCommentDelete('comment');
+	}); 
 
 $router->add('admin/(\d+)/modifycomment/(\d+)', function($params){
 		$controller = new Controller($params);
-		$controller->layoutAdminComment($controller->modelCommentsingleCall('comment'), $params);
+		$controller->displayCommentModify('comment');
 	});
 
 $router->add('admin/(\d+)/modifycomment/commentModification.php', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->layoutAction($controller->modelCommentUpdate('comment'), $params, 'admin');
+		$controller->displayCommentModified('comment');
 	});
 
 $router->add('admin/create', function()
 	{
-		Controller::layoutAdminCreate();
+		Controller::displayAdminCreate();
 	});
 
 $router->add('admin/articleCreated.php', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->layoutAction($controller->modelArticleInsert('billet'), $params, 'admin');
+		$controller->displayArticleCreated('billet');
 	});
 
 $router->add('admin/(\d+)/delete', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->layoutAction($controller->modelArticleDelete('billet'), $params, 'admin');
+		$controller->displayArticleDelete('billet');
 	});
 
 $router->run();

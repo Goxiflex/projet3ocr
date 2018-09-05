@@ -7,7 +7,7 @@
 			<?php 
 				if($context == 'front')
 				{
-					echo '<a href="'. PATH.'/'.$params['0'].'"><button class="btn btn-secondary"> Revenir à l\'article</button></a>';
+					echo '<a href="'. PATH.'/'.$params[0].'"><button class="btn btn-secondary"> Revenir à l\'article</button></a>';
 				}
 				elseif ($context == 'admin') 
 				{

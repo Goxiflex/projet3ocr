@@ -5,11 +5,11 @@
 		<section class="container">
 		<h1><?php  echo $article->getTitre()  ?></h1>
 				<p class="font-weight-bold">Ecrit par <?php  echo $article->getAuteur()  ?> le <?php  echo date('d/m/Y', $article->getDateCreation())  ?> </p> 
-				<p>Contenu : <?php  echo $article->getContenu()  ?>
+				<p class="shadow-sm p-2">Contenu : <?php  echo $article->getContenu()  ?>
 				</p>
 		
 			<h2>Commentaires de cet article : </h2>
-			<div class="col-10">
+			<div class="col-10 border border-light p-2">
 					<?php
 						foreach ($comments as $key => $comment) {
 					?>								
@@ -46,17 +46,17 @@
 			</div>
 				<h3>Poster un commentaire :</h3>
 					<form method="POST" action="<?php echo $article->getId(); ?>/commentpost">
-						<p>
+						<p class="col-6">
 							<input type="hidden" name="billetid" value="<?php echo $article->getId();?>">
 							<label for="Auteur">Votre nom :</label><br/>
-							<input type="text" name="auteur">
+							<input type="text" class="form-control" name="auteur">
 						</p>
-						<p>	
+						<p class="col-6">	
 							<label for="Auteur">Votre commentaire :</label><br/>
-							<textarea type="text" name="contenu"></textarea>
+							<textarea type="text" class="form-control" name="contenu"></textarea>
 						</p>
 						<p>
-							<button type="submit">Publier</button>
+							<button class="btn btn-success" type="submit">Publier</button>
 						</p>
 					</form>	
 

@@ -6,20 +6,20 @@
 <section class="container">
 	<h1>Création de l'article</h1>
 	<form action="articleCreated.php" method="post">
-		<p>
+		<p class="form-group col-6">
 			<label for="Auteur">Auteur</label><br/>
-			<input type="text" name="auteur" value="" >
+			<input type="text" class="form-control" name="auteur" value="" >
 		</p>
-		<p>
+		<p class="form-group col-6">
 			<label for="Titre">Titre</label><br/>
-			<input type="text" name="titre" value="" >
+			<input type="text" class="form-control" name="titre" value="" >
 		</p>	
-		<p>	
+		<p class="form-group col-10">
 			<label for="Contenu">Contenu</label><br/>
-			<textarea type="text" name="contenu"></textarea>
+			<textarea type="text" id="article-content" class="form-control" name="contenu"></textarea>
 		</p>
 		<p>
-			<button type="submit">Créer l'article</button>
+			<button class="btn btn-success" type="submit">Créer l'article</button>
 		</p>
 
 		
