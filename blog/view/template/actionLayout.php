@@ -1,7 +1,12 @@
-<?php 
-	require 'Adds/head.php';
-	require 'Adds/header.php';
-?>
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Titre 1 </title>
+	<?php require 'Adds/head.php';?>
+	</head>
+	<body>
+	<?php require 'Adds/header.php';?>
 <section class="container">
 		<h2><?php echo $message ?></h2> 
 			<?php 
@@ -16,6 +21,7 @@
 			?>
 			<a href="<?= PATH; ?>"><button class="btn btn-warning"> Revenir à la page d'accueil</button></a>
 </section>		
-<?php
-	require 'Adds/footer.php';
-?>
+	<?php require 'Adds/footer.php';?>
+	</body>
+</html>
+

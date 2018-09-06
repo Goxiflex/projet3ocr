@@ -71,7 +71,7 @@ class Controller {
 	}
 
 	public function displayAdmin($table) {
-		$modelArticle = new Model($table, '', '');
+		$modelArticle = new Model($table, '', 'dateCreation');
 		return View::layoutAdmin($modelArticle->articlesCall());
 	}
 

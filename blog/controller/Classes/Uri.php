@@ -1,6 +1,6 @@
 <?php
 
-class URI
+class Uri
 {
     private $explodedURI;  // à modifier
     private $scriptPath;

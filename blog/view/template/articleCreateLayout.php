@@ -1,7 +1,12 @@
-<?php 
-	require 'Adds/head.php';
-	require 'Adds/header.php';
-?>
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Titre 1 </title>
+	<?php require 'Adds/head.php';?>
+	</head>
+	<body>
+	<?php require 'Adds/header.php';?>
 
 <section class="container">
 	<h1>Création de l'article</h1>
@@ -27,6 +32,7 @@
 	</form>
 </section>
 
-<?php
-	require 'Adds/footer.php';
-?>
+<?php require 'Adds/footer.php';?>
+	</body>
+</html>
+

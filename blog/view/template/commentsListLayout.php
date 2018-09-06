@@ -1,8 +1,12 @@
 
-<?php 
-	require 'Adds/head.php';
-	require 'Adds/header.php';
-?>	
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Titre 1 </title>
+	<?php require 'Adds/head.php';?>
+	</head>
+	<body>
+	<?php require 'Adds/header.php';?>
 <section class="container mb-5">
 	<h1>Edition des commentaires</h1> 
 	<p>de l'article <?php echo '<span class="font-weight-bold">'.$article->getTitre().'</span> rédigé par <span class="font-weight-bold">'. $article->getAuteur() .'</span> le <span class="font-weight-bold">'. date('d/m/Y',$article->getDateCreation()) .'</span>';?></p>
@@ -60,6 +64,7 @@
 </section>	
 
 
-<?php
-	require 'Adds/footer.php';
-?>
+<?php require 'Adds/footer.php';?>
+	</body>
+</html>
+

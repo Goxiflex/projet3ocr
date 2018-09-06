@@ -1,4 +1,3 @@
-<body>
 	<header class="container-fluid bg-info mb-3">
 		<nav  class="container navbar navbar-expand-lg navbar-light  ">
 				<ul class="navbar-nav">

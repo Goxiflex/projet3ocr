@@ -1,7 +1,12 @@
-<?php 
-	require 'Adds/head.php';
-	require 'Adds/header.php';
-?>
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Titre 1 </title>
+	<?php require 'Adds/head.php';?>
+	</head>
+	<body>
+	<?php require 'Adds/header.php';?>
 <section class="container mb-5">
 <h1>Administration des articles du blog</h1>
 <div>Vous pouvez ici créer, modifier ou supprimer des articles</div>
@@ -36,6 +41,6 @@ foreach($articles as $article)
 </div>
 <p><a href="<?= PATH; ?>/admin/create"><button class="btn btn-success">Créer un article </button></a></p>
 </section>
-<?php
-	require 'Adds/footer.php';
-?>
+	<?php require 'Adds/footer.php';?>
+	</body>
+</html>

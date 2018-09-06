@@ -1,8 +1,12 @@
-<?php 
-	require 'Adds/head.php';
-	require 'Adds/header.php';
 
-?>
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Titre 1 </title>
+	<?php require 'Adds/head.php';?>
+	</head>
+	<body>
+	<?php require 'Adds/header.php';?>
 <section class="container">
 	<h1>Edition du commentaire</h1>
 	<p>Edition du commentaire de <span class="font-weight-bold"><?php echo $comment->getAuteur(); ?></span>, portant le numéro <span class="font-weight-bold"> <?php echo $comment->getId();?> </span> et posté le <span class="font-weight-bold"><?php echo date('d/m/Y', $comment->getDateCreation());?></span></p>
@@ -30,6 +34,7 @@
 		
 	<p><a href="<?= PATH; ?>/admin">Retour à la liste des articles</a></p>
 </section>
-<?php
-	require 'Adds/footer.php';
-?>
+	<?php require 'Adds/footer.php';?>
+	</body>
+</html>
+

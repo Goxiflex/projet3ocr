@@ -1,7 +1,12 @@
-<?php 
-	require 'Adds/head.php';
-	require 'Adds/header.php';
-?>		
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<title>Titre 1 </title>
+	<?php require 'Adds/head.php';?>
+	</head>
+	<body>
+	<?php require 'Adds/header.php';?>
 		<section class="container">
 		<h1><?php  echo $article->getTitre()  ?></h1>
 				<p class="font-weight-bold">Ecrit par <?php  echo $article->getAuteur()  ?> le <?php  echo date('d/m/Y', $article->getDateCreation())  ?> </p> 
@@ -62,6 +67,6 @@
 
 				<div><a href="<?= PATH; ?>"> Revenir à la page d'accueil</a></div>
 		</section>		
-<?php
-	require 'Adds/footer.php';
-?>
+<?php require 'Adds/footer.php';?>
+	</body>
+</html>

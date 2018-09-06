@@ -30,8 +30,4 @@ class Router
         }
 		require 'View/404.php';
     }
-
-    public function getArticleController() {
-        require 'Controller/articleController.php';
-    }
 }
