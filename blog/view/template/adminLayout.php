@@ -7,7 +7,7 @@
 	</head>
 	<body>
 	<?php require 'Adds/header.php';?>
-<section class="container mb-5">
+<section class="container mb-5 bg-light opacity">
 <h1>Administration des articles du blog</h1>
 <div>Vous pouvez ici créer, modifier ou supprimer des articles</div>
 <div class="table-responsive">

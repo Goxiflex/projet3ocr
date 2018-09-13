@@ -7,7 +7,7 @@
 	</head>
 	<body>
 	<?php require 'Adds/header.php';?>
-<section class="container">
+<section class="container bg-light opacity">
 	<h1>Edition d'article</h1>
 	<p>Edition de l'article <span class="font-weight-bold"><?php  echo $article->getTitre() .'</span>  de <span class="font-weight-bold">'. $article->getAuteur() .'</span>, portant le numéro <span class="font-weight-bold">'. $article->getId();  ?>.</span></p>
 	<form action="articleModification.php" method="post">

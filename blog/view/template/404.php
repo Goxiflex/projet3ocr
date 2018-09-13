@@ -5,7 +5,7 @@
 	</head>
 	<body>
 	<?php require 'Adds/header.php';?>
-		<section class="container">
+		<section class="container bg-light opacity">
 				<h1>L'URL demandé n'existe pas  </h1>
 				<p>Êtes-vous sûr(e) d'avoir tapé la bonne URL ?</p>
 

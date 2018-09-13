@@ -14,7 +14,7 @@ $router->add('^$', function($params)
 	});	
 
 $router->add('(\d+)', function($params)
- 	{	
+ 	{
 		$controller = new Controller($params);
 		$controller->displayArticle('billet','comment');
  	});
@@ -87,6 +87,7 @@ $router->add('admin/(\d+)/delete', function($params)
 		$controller = new Controller($params);
 		$controller->displayArticleDelete('billet');
 	});
+
 
 $router->run();
 ?>

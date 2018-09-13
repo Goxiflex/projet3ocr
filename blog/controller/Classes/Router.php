@@ -28,6 +28,6 @@ class Router
             }
             
         }
-		require 'View/404.php';
+		require 'view/template/404.php';
     }
 }

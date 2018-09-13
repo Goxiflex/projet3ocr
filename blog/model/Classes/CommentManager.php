@@ -1,70 +1,50 @@
 <?php
-Class CommentManager extends Database 
+Class CommentManager 
 {
-	public function insertComment($table, $commentAuteur, $billetId, $commentContent)
-	{
-		try 
-		{
-			$this->getPDO()->query('INSERT INTO '. $table .' SET auteur="'. $commentAuteur .'", billetid="'. $billetId .'", contenu="'. $commentContent .'" ');
-			return 'Commentaire posté avec succés'; 
+	
+	public static function commentsCall($table, $billetId, $sort) {
+		$database = new Database();
+		$comments = array();
+		$i=0;
+		foreach ($database->getComments($table, $billetId, $sort) as $dataComment) {
+			$comment[$i] = new Comment;
+			$comment[$i]->hydrateComment($dataComment);
+			$comments[$i] = $comment[$i]; // A voir s'il y a besoin de rajouter un indice à $comments
+			$i++;
 		}
-		catch (Exception $e)
-		{
-			return 'Commentaire non créé suite à l\'erreur :'.$e->getMessage(); 
-		}
+		return $comments;
 	}
 
-	public function getComment($table, $id) 
-	{
-		try
-		{
-			$req = $this->getPDO()->query('SELECT * FROM '. $table .' WHERE id = '. $id);
-			$datasComment = $req->fetch(PDO::FETCH_OBJ);
-			return $datasComment;
-		}
-		catch (Exception $e)
-		{
-			return 'Commentaire non affiché suite à l\'erreur :'. $e->getMessage();
-		}
+	public static function commentCall($table, $id) {
+		$comment = new Comment();
+		$database = new Database();
+		$comment->hydrateComment($database->getPost($table, $id));	
+		return $comment;
 	}
 
-	public function getComments($table, $billetId, $order) 
-	{
-		try
-		{
-			$req = $this->getPDO()->query('SELECT * FROM '. $table .' WHERE billetid = '. $billetId .' ORDER BY '. $order .' ASC');
-			$datasComments = $req->fetchAll(PDO::FETCH_OBJ);
-			return $datasComments;
-		}
-		catch (Exception $e)
-		{
-			return 'Commentaire non affiché suite à l\'erreur :'. $e->getMessage();
-		}
+	public static function commentInsert($table) {
+		$comment = new Comment();
+		$comment->hydrateArrayComment($_POST);
+		$database = new Database();
+		return $database->insertComment($table, $comment->getAuteur(), $comment->getBilletId(), $comment->getContenu());
 	}
 
-	public function reportComment($table, $reported, $id)
-	{
-		try
-		{
-			$this->getPDO()->query('UPDATE '. $table .' SET reported='. $reported .'  WHERE id = '. $id .' ');
-			return 'article reporté avec succés';
-		}
-		catch (Exception $e)
-		{
-			return 'article non reporté suite à l\'erreur :'. $e->getMessage();
-		}
+	public static function commentUpdate($table) {
+		$comment = new Comment;
+		$comment->hydrateArrayComment($_POST);
+		$database = new Database();
+		return $database->updateComment($table, $comment->getAuteur(), $comment->getContenu(), (int)$comment->getReported(), date('Y-m-d H:i:s' ,$comment->getDateCreation()), $comment->getId());
 	}
 
-	public function updateComment($table, $auteur, $contenu, $reported, $dateCreation, $id)
-	{
-		try
-		{
-			$this->getPDO()->query('UPDATE '. $table .' SET auteur="'. $auteur .'", contenu="'. $contenu .'", reported="'. $reported .'", dateCreation="'.  $dateCreation .'" WHERE id="'. $id .'"');
-			return 'article modifié avec succés';
-		}
-		catch (Exception $e)
-		{
-			return 'article non modifié suite à l\'erreur :'. $e->getMessage();
-		}
+	public static function commentReport($table, $id){
+		$comment = new Comment;
+		$comment->hydrateArrayComment($_POST);
+		$database = new Database();
+		return $database->reportComment($table, $comment->getReported(), $id);
+	}
+	
+	public static function commentDelete($table, $id){
+		$database = new Database();
+		return $database->deletePost($table, $id);
 	}
 }

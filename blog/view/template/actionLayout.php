@@ -7,7 +7,7 @@
 	</head>
 	<body>
 	<?php require 'Adds/header.php';?>
-<section class="container">
+<section class="container bg-light opacity">
 		<h2><?php echo $message ?></h2> 
 			<?php 
 				if($context == 'front')

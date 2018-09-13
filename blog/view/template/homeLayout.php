@@ -5,10 +5,9 @@
 	<title>Titre 1 </title>
 	<?php require 'Adds/head.php';?>
 	</head>
-	<body>
 	<?php require 'Adds/header.php';?>
 
-		<section class="container">
+		<section class="container bg-light opacity">
 			<h1>Bienvenue sur le blog de Jean Forteroche</h1>
 			<div>Vous trouverez ici les derniers articles de ce blog</div>
 		

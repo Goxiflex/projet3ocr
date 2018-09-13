@@ -7,7 +7,7 @@
 	</head>
 	<body>
 	<?php require 'Adds/header.php';?>
-		<section class="container">
+		<section class="container bg-light opacity">
 		<h1><?php  echo $article->getTitre()  ?></h1>
 				<p class="font-weight-bold">Ecrit par <?php  echo $article->getAuteur()  ?> le <?php  echo date('d/m/Y', $article->getDateCreation())  ?> </p> 
 				<p class="shadow-sm p-2">Contenu : <?php  echo $article->getContenu()  ?>

@@ -7,7 +7,7 @@
 	</head>
 	<body>
 	<?php require 'Adds/header.php';?>
-<section class="container">
+<section class="container bg-light opacity">
 	<h1>Edition du commentaire</h1>
 	<p>Edition du commentaire de <span class="font-weight-bold"><?php echo $comment->getAuteur(); ?></span>, portant le numéro <span class="font-weight-bold"> <?php echo $comment->getId();?> </span> et posté le <span class="font-weight-bold"><?php echo date('d/m/Y', $comment->getDateCreation());?></span></p>
 	

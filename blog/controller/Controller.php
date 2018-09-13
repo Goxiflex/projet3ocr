@@ -1,8 +1,7 @@
 <?php 
 
 class Controller {
-	private $parameters = array();
-
+private $parameters = array();
 
 	public function __construct($params) {
 		$this->setParameters($params);
@@ -16,30 +15,23 @@ class Controller {
 		return $this->parameters;
 	}
 
-	/* Nouveau format d'appel au contrôleur et à la vue. A voir si c'est la bonne pratique. */
 	public function displayArticle($table, $complementaryTable) {
-		$modelArticle = new Model($table, $this->parameters[0], '');
-		$modelComments = new Model($complementaryTable, $this->parameters[0], 'dateCreation');
-		return View::layoutArticle($modelArticle->articleCall(), $modelComments->commentsCall());		
+		return View::layoutArticle(ArticleManager::articleCall($table, $this->parameters[0]), CommentManager::commentsCall($complementaryTable, $this->parameters[0], 'dateCreation'));
 	}
 
 	public function displayArticleEdit($table) {
-		$modelArticle = new Model($table, $this->parameters[0], '');
-		return View::layoutArticleEdit($modelArticle->articleCall());
+		return View::layoutArticleEdit(ArticleManager::articleCall($table, $this->parameters[0]));
 	}
 
 	public function displayArticleEdited($table) {
-		$modelArticle = new Model ($table, $this->parameters[0], '');
-		return View::layoutAction($modelArticle->articleUpdate(), $this->parameters[0], 'admin');
+		return View::layoutAction(ArticleManager::articleUpdate($table), $this->parameters[0], 'admin');
 	}
 
 	public function displayArticleCreated($table) {
-		$modelArticle = new Model ($table, '', '');
-		return View::layoutAction($modelArticle->articleInsert(), '', 'admin');
+		return View::layoutAction(ArticleManager::articleInsert($table), '', 'admin');
 	}
 
 	public function displayArticleDelete($table) {
-		$modelArticle = new Model ($table, $this->parameters[0], '');
 		try 
 		{
 			if (!isset($_POST['confirm']))
@@ -48,7 +40,7 @@ class Controller {
 				}
 			elseif ($_POST['confirm'] === 'Oui') 
 				{
-					return View::layoutAction($modelArticle->articleDelete(), $this->parameters[0], 'admin');
+					return View::layoutAction(ArticleManager::articleDelete($table, $this->parameters[0]), $this->parameters[0], 'admin');
 				}
 			elseif ($_POST['confirm'] === 'Non') 
 				{
@@ -66,33 +58,26 @@ class Controller {
 	}
 
 	public function displayArticlesList($table) {
-		$modelArticle = new Model($table, '', '');
-		return View::layoutHome($modelArticle->articlesCall());
+		return View::layoutHome(ArticleManager::articlesCall($table));
 	}
 
 	public function displayAdmin($table) {
-		$modelArticle = new Model($table, '', 'dateCreation');
-		return View::layoutAdmin($modelArticle->articlesCall());
+		return View::layoutAdmin(ArticleManager::articlesCall($table));
 	}
 
 	public function displayCommentInsert($table) {
-		$modelComment = new Model($table, $this->parameters[0], '');
-		return View::layoutAction($modelComment->commentInsert(), $this->parameters[0], 'front');
+		return View::layoutAction(CommentManager::commentInsert($table), $this->parameters[0], 'front');
 	}
 
 	public function displayCommentReport($table) {
-		$modelComment = new Model($table, $this->parameters[1], '');
-		return View::layoutAction($modelComment->commentReport(), $this->parameters[0], 'front');
+		return View::layoutAction(CommentManager::commentReport($table, $this->parameters[1]), $this->parameters[0], 'front');
 	}
 
 	public function displayCommentsList($table, $complementaryTable) {
-		$modelArticle = new Model ($table, $this->parameters[0], '');
-		$modelComments = new Model ($complementaryTable, $this->parameters[0], 'dateCreation');
-		return View::layoutCommentsAdmin($modelArticle->articleCall(), $modelComments->commentsCall());
+		return View::layoutCommentsAdmin(ArticleManager::articleCall($table, $this->parameters[0]), CommentManager::commentsCall($complementaryTable, $this->parameters[0], 'dateCreation'));
 	}
 
 	public function displayCommentDelete($table){
-		$modelComment = new Model ($table, $this->parameters[1], '')	;
 		try
 		{
 				if (!isset($_POST['confirm']))
@@ -101,7 +86,7 @@ class Controller {
 					}
 				elseif ($_POST['confirm'] === 'Oui') 
 					{
-						return View::layoutAction($modelComment->commentDelete(), $this->parameters[0], 'admin');
+						return View::layoutAction(CommentManager::commentDelete($table, $this->parameters[1]), $this->parameters[0], 'admin');
 					}
 				elseif ($_POST['confirm'] === 'Non')
 					{
@@ -119,17 +104,15 @@ class Controller {
 	}
 
 	public function displayCommentModify($table){
-		$modelComment = new Model ($table, $this->parameters[1], '');
-		return View::layoutCommentAdmin($modelComment->CommentCall(), $this->parameters[1]);
+		return View::layoutCommentAdmin(CommentManager::commentCall($table, $this->parameters[1]), $this->parameters[1]);
 	}
 
 	public function displayCommentModified($table){
-		$modelComment = new Model ($table, '', '');
-		return View::layoutAction($modelComment->CommentUpdate(), $this->parameters[0], 'admin');
+		return View::layoutAction(CommentManager::commentUpdate($table), $this->parameters[0], 'admin');
 	}
-
 
 	public static function displayAdminCreate(){
 		return View::layoutArticleCreate();
 	}
 }
+

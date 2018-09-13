@@ -7,7 +7,7 @@
 	</head>
 	<body>
 	<?php require 'Adds/header.php';?>
-<section class="container mb-5">
+<section class="container mb-5 bg-light opacity">
 	<h1>Edition des commentaires</h1> 
 	<p>de l'article <?php echo '<span class="font-weight-bold">'.$article->getTitre().'</span> rédigé par <span class="font-weight-bold">'. $article->getAuteur() .'</span> le <span class="font-weight-bold">'. date('d/m/Y',$article->getDateCreation()) .'</span>';?></p>
 	<div class="container">

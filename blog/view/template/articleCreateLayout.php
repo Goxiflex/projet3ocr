@@ -8,7 +8,7 @@
 	<body>
 	<?php require 'Adds/header.php';?>
 
-<section class="container">
+<section class="container bg-light opacity">
 	<h1>Création de l'article</h1>
 	<form action="articleCreated.php" method="post">
 		<p class="form-group col-6">

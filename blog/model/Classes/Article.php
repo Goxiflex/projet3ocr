@@ -25,7 +25,7 @@ class Article extends Post
 	public function hydrate ($donnees)
 		 {
 			 if (isset($donnees->id))
-			 {
+			 {	
 				  $this->setId($donnees->id);
 			 }
 			  
@@ -47,7 +47,7 @@ class Article extends Post
 			 if (isset($donnees->contenu))
 			 {
 				  $this->setContenu($donnees->contenu);
-			 }		  
+			 }		
 		 }	
 
 	public function hydrateArray (array $donnees)
