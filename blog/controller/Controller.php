@@ -114,5 +114,15 @@ private $parameters = array();
 	public static function displayAdminCreate(){
 		return View::layoutArticleCreate();
 	}
+
+	public function displayConnectionUser($table){
+		if (isset($_POST['email'])) {
+			return View::layoutConnection(UserManager::userMatch($table, $_POST['email']));
+		}
+		else {
+
+			return View::layoutConnection('');
+		}
+	}
 }
 

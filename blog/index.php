@@ -3,6 +3,7 @@
 require_once 'config.php';
 require_once 'controller/Classes/Autoloader.php';
 autoloader::register();
+session_start();
 
 $uri = new Uri($_SERVER['REQUEST_URI']);
 $router = new Router($uri);
@@ -88,6 +89,13 @@ $router->add('admin/(\d+)/delete', function($params)
 		$controller->displayArticleDelete('billet');
 	});
 
+$router->add('connect', function($params)
+	{
+		$controller = new Controller($params);
+		$controller->displayConnectionUser('user');
+		var_dump($_SESSION);
+		Print_r ($_SESSION);
+	});
 
 $router->run();
 ?>

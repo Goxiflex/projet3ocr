@@ -34,5 +34,9 @@ class View {
 		require 'view/template/actionLayout.php';
 	}	
 
+	public static function layoutConnection($user) {
+		require 'view/template/connect.php';
+	}
+
 	
 }

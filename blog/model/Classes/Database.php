@@ -26,6 +26,21 @@ class Database {
 		return $this->pdo;
 	}
 
+	public function getUser($table, $email)
+	{
+		try 
+		{
+			$req = $this->getPDO()->query('SELECT * FROM '. $table .' WHERE email = "'. $email .'" ');
+			$dataUser = $req->fetch(PDO::FETCH_OBJ);
+			return $dataUser;
+		}
+		catch (Exception $e) 
+		{
+			return $e->getMessage();
+		}	
+
+	}
+
 	
 	public function getAll($table)
 	{
