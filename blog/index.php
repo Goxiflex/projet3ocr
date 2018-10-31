@@ -35,57 +35,67 @@ $router->add('(\d+)/reportcomment/(\d+)', function($params)
 $router->add('admin', function($params)
 	{
 		$controller = new Controller($params);
+		Controller::logCheck();
 		$controller->displayAdmin('billet');
 	});
 
 $router->add('admin/(\d+)/edit', function($params)
 	{
 		$controller = new Controller($params);
+		Controller::logCheck();
 		$controller->displayArticleEdit('billet');
 	});
 
 $router->add('admin/(\d+)/articleModification.php', function($params)
 	{
 		$controller = new Controller($params);
+		Controller::logCheck();
 		$controller->displayArticleEdited('billet');
 	});
 
 $router->add('admin/(\d+)/comments', function($params)
 	{
 		$controller = new Controller($params);
+		Controller::logCheck();
 		$controller->displayCommentsList('billet', 'comment');
 	});
 
 $router->add('admin/(\d+)/deletecomment/(\d+)', function($params){
 		$controller = new Controller($params);
+		Controller::logCheck();
 		$controller->displayCommentDelete('comment');
 	}); 
 
 $router->add('admin/(\d+)/modifycomment/(\d+)', function($params){
 		$controller = new Controller($params);
+		Controller::logCheck();
 		$controller->displayCommentModify('comment');
 	});
 
 $router->add('admin/(\d+)/modifycomment/commentModification.php', function($params)
 	{
 		$controller = new Controller($params);
+		Controller::logCheck();
 		$controller->displayCommentModified('comment');
 	});
 
 $router->add('admin/create', function()
 	{
+		Controller::logCheck();
 		Controller::displayAdminCreate();
 	});
 
 $router->add('admin/articleCreated.php', function($params)
 	{
 		$controller = new Controller($params);
+		Controller::logCheck();
 		$controller->displayArticleCreated('billet');
 	});
 
 $router->add('admin/(\d+)/delete', function($params)
 	{
 		$controller = new Controller($params);
+		Controller::logCheck();
 		$controller->displayArticleDelete('billet');
 	});
 
@@ -93,9 +103,13 @@ $router->add('connect', function($params)
 	{
 		$controller = new Controller($params);
 		$controller->displayConnectionUser('user');
-		var_dump($_SESSION);
-		Print_r ($_SESSION);
 	});
+
+$router->add('disconnect', function($params) 
+	{
+		Controller::disconnect();
+	});
+
 
 $router->run();
 ?>

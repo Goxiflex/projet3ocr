@@ -124,5 +124,22 @@ private $parameters = array();
 			return View::layoutConnection('');
 		}
 	}
+
+	public static function logCheck() {
+		if ($_SESSION['logged'] !== TRUE ) {
+			header('Location: '.PATH.'/connect');
+		}
+	}
+
+	public static function disconnect() {
+
+			if (isset($_SESSION['logged']) && $_SESSION['logged'] === TRUE) {
+				session_destroy();
+				return View::layoutConnection('Vous avez été déconnecté');
+			}
+			else {
+				return View::layoutConnection('Veuillez vous connecter');
+			}
+	}
 }
 
