@@ -5,7 +5,7 @@
 					<li class="nav-item"><a class="nav-link text-white" href="<?php echo PATH; ?>/admin">Page d'administration</a></li>
 				<?php
 					if(isset($_SESSION['logged']) && $_SESSION['logged']=== TRUE) {
-						echo '<li class="nav-item"><a class="nav-link text-white" href=" '.PATH.'/disconnect">Deconnexion</a></li>';
+						echo '<li class="nav-item"><a class="nav-link text-white" href=" '.PATH.'/disconnect">Déconnexion</a></li>';
 					}
 				?>
 				</ul>	
