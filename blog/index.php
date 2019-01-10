@@ -11,7 +11,7 @@ $router = new Router($uri);
 $router->add('^$', function($params)
 	{
 		$controller = new Controller($params);
-		$controller->displayArticlesList('billet');	
+		$controller->displayArticlesList('billet');
 	});	
 
 $router->add('(\d+)', function($params)

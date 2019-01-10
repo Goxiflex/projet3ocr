@@ -23,17 +23,43 @@ Class CommentManager
 	}
 
 	public static function commentInsert($table) {
+		$gump = new Gump;
+		$gump->validation_rules(array(
+			'auteur'    => 'required|max_len,100|min_len,6',
+			'contenu'       => 'required|max_len,3000|min_len,2'
+		));
+		$_POST = $gump->sanitize($_POST);
+		$validated_data = $gump->run($_POST);
+
+		if($validated_data === false) {
+		return $gump->get_readable_errors(true);
+		} 
+		else {
 		$comment = new Comment();
 		$comment->hydrateArrayComment($_POST);
 		$database = new Database();
 		return $database->insertComment($table, $comment->getAuteur(), $comment->getBilletId(), $comment->getContenu());
+		}
 	}
 
 	public static function commentUpdate($table) {
+		$gump = new Gump;
+		$gump->validation_rules(array(
+			'auteur'    => 'required|max_len,100|min_len,6',
+			'contenu'       => 'required|max_len,3000|min_len,2'
+		));
+		$_POST = $gump->sanitize($_POST);
+		$validated_data = $gump->run($_POST);
+
+		if($validated_data === false) {
+		return $gump->get_readable_errors(true);
+		} 
+		else {
 		$comment = new Comment;
 		$comment->hydrateArrayComment($_POST);
 		$database = new Database();
 		return $database->updateComment($table, $comment->getAuteur(), $comment->getContenu(), (int)$comment->getReported(), date('Y-m-d H:i:s' ,$comment->getDateCreation()), $comment->getId());
+		}
 	}
 
 	public static function commentReport($table, $id){

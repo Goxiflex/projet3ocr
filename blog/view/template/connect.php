@@ -10,11 +10,11 @@
 			<h1>Me connecter à l'espace Admin</h1>
 			<form method="POST" action="connect">
 				<p>
-					<label>Email</label>
+					<label>Email :</label><br/>
 					<input type="text" name="email" />
 				</p>
 				<p>
-					<label>Mot de passe</label>
+					<label>Mot de passe :</label><br/>
 					<input type="password" name="password" />
 				</p>
 				<p>

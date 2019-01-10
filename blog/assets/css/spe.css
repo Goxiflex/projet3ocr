@@ -1,8 +1,6 @@
-body {
-	background: no-repeat;
-	background-image: url("http://localhost/php/projet3ocr/blog/assets/images/aurora-1185466_1920.jpg");
-}
-
-.opacity {
-	opacity : 0.9;
+.gump-error-message {
+	background-color:red;
+	text-align: center;
+	color:white;
+	display: block;
 }
